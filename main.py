@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, filedialog, dialog
+from tkinter import messagebox, filedialog
 from mido import Message, MidiFile, MidiTrack
 import os, pygame, time
 
