@@ -2,11 +2,8 @@
 An encrypted message software made for my computer science class
 
 ## Required Packages
-- tkinter
 - mido
-- os
-
-(2/3 should already be installed)
+- pygame
 
 ## How to use it
 When you run the program, it will show a Tkinter interface with intructions.
