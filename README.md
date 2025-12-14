@@ -5,6 +5,7 @@ An encrypted message software made for my computer science class
 - tkinter
 - mido
 - os
+
 (2/3 should already be installed)
 
 ## How to use it
