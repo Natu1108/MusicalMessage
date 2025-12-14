@@ -5,6 +5,7 @@ An encrypted message software made for my computer science class
 When you run the program, it will show a Tkinter interface with intructions.
 The steps you should start with:
 1. Type your message into the encoding slot and click 'Submit'
-2. Decode said message by choosing the file and clicking 'Decode'
+2. Save your encoded message with a custom name
+3. Decode any message by choosing the file (.mid) and clicking 'Decode'
 
 Simple as that. I hope you find it as interesting as I did!
