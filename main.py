@@ -1,4 +1,4 @@
-import tkinter as tk
+import customtkinter as tk
 from tkinter import messagebox, filedialog
 from mido import Message, MidiFile, MidiTrack
 import os, pygame, time
@@ -17,7 +17,9 @@ def encode():
     for letter in msg:
         track.append(Message('note_on', note=ord(letter), time=32))
 
-    name = tk.simpledialog.askstring("Save MIDI", "Enter a name for the file (no extenstion, aka .mid):")
+    dialog = tk.CTkInputDialog(title="Save MIDI", text="Enter a name for the file (no extenstion, aka .mid):")
+
+    name = dialog.get_input()
 
     if not name:
         return
@@ -32,7 +34,7 @@ def decode():
     for msg in MidiFile(fp).play():
         if msg.type in ('note_on', 'note_off'):
             decodedMsg += chr(msg.note)
-    output.config(text=decodedMsg)
+    output.configure(text=decodedMsg)
 
 # Choose the .mid file
 def chooseMid():
@@ -46,7 +48,7 @@ def chooseMid():
     )
 
     if f:
-        chooseBtn.config(text=os.path.basename(f.name))
+        chooseBtn.configure(text=os.path.basename(f.name))
         fp = os.path.basename(f.name)
 
 # Plays the .mid file to show what the audio sounds like
@@ -64,20 +66,20 @@ def playMid():
     pygame.mixer.quit()
 
 # Setup the window
-root = tk.Tk()
+root = tk.CTk()
 root.title("Musical Messages")
 root.geometry("512x256")
 
 # Setup widgets
-frame = tk.Frame(root)
-label = tk.Label(root, text="Input a message: ")
-entry = tk.Entry(root)
-btn = tk.Button(root, text="Submit", command=encode)
-btnDecode = tk.Button(root, text="Decode", command=decode)
-chooseBtn = tk.Button(root, text="Choose a file", command=chooseMid)
-labelDecode = tk.Label(root, text="Decode a message: ")
-btnPlay = tk.Button(root, text="Play the audio", command=playMid)
-output = tk.Label(root, text="")
+frame = tk.CTkFrame(root)
+label = tk.CTkLabel(root, text="Input a message: ")
+entry = tk.CTkEntry(root)
+btn = tk.CTkButton(root, text="Submit", command=encode)
+btnDecode = tk.CTkButton(root, text="Decode", command=decode)
+chooseBtn = tk.CTkButton(root, text="Choose a file", command=chooseMid)
+labelDecode = tk.CTkLabel(root, text="Decode a message: ")
+btnPlay = tk.CTkButton(root, text="Play the audio", command=playMid)
+output = tk.CTkLabel(root, text="", anchor="w")
 
 # Place widgets on screen
 label.grid(row=0, column=0)
@@ -87,7 +89,7 @@ labelDecode.grid(row=1,column=0)
 chooseBtn.grid(row=1, column=1)
 btnDecode.grid(row=1, column=2)
 btnPlay.grid(row=2)
-output.grid(row=3, columnspan=3)
+output.grid(row=2, column=2, columnspan=3)
 
 # Run the app
 root.mainloop()
